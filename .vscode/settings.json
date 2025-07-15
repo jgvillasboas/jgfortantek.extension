@@ -1,0 +1,7 @@
+{
+    "python.analysis.extraPaths": [
+        "C:\\Users\\Jose Guilherme\\AppData\\Roaming\\Autodesk\\Revit\\RevitAPI stubs RVT 20-24\\RevitAPI stubs\\RVT 22",
+        "C:\\Users\\Jose Guilherme\\AppData\\Roaming\\pyRevit-Master\\pyrevitlib",
+        "./lib"
+    ]
+}
