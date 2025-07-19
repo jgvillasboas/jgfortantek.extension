@@ -1,24 +1,15 @@
 # -*- coding: utf-8 -*-
 
-#REVIT/GENERAL IMPORTS
+#Revit Imports
 from Autodesk.Revit.UI import *
 from Autodesk.Revit.DB import *
-from pyrevit import forms
-import wpf, os, clr
-
-#.NET IMPORTS
-clr.AddReference("System")
-from System.Collections.Generic import List
-from System.Windows import Window, ResourceDictionary
-from System.Windows.Controls import CheckBox, Button, TextBox, ListBoxItem
-from System import Uri
 
 #Custom Imports
 from GUI.TemplateSelector import TemplateSelector
 from GUI.ViewSelection import ViewSelection, ViewWrapper
 
 
-#VARIABLES
+#Variables
 uidoc = __revit__.ActiveUIDocument
 doc = __revit__.ActiveUIDocument.Document #type: Document
 selection = uidoc.Selection
@@ -30,24 +21,21 @@ view_template_elements = [v for v in FilteredElementCollector(doc).OfClass(View)
 template_name_list = [v.Name for v in view_template_elements]
 viewtemplate_dictionary_name = {v.Name: v for v in view_template_elements}
 
-#SELECT VIEWTEMPLATES
+#Select ViewTemplates
 
 form_templates = TemplateSelector(template_name_list)
+result_templates = form_templates.ShowDialog()
 
-if form_templates.ShowDialog():
+if result_templates == True:
     selected_template_names = form_templates.listbox.SelectedItem
 
     if not selected_template_names:
         TaskDialog.Show("Warning", "No View Templates were selected")
-        script.exit()
 
+    else:
         selected_template_view = viewtemplate_dictionary_name[selected_template_names]
-        view_template_id = selected_template_view.Id
         TaskDialog.Show("Selected View Templates: ", "You Selected: " + str(selected_template_names))
-
-else:
-    script.exit()
-        
+        view_template_id = selected_template_view.Id
 
 
 all_views = [view for view in FilteredElementCollector(doc).OfClass(View).ToElements() if not view.IsTemplate and not view.ViewType in [ViewType.Legend, ViewType.Schedule]]
