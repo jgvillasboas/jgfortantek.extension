@@ -7,7 +7,7 @@ import wpf, os, clr
 
 #.NET IMPORTS
 clr.AddReference("System")
-from System.Colletions.Generic import List
+from System.Collections.Generic import List
 from System.Windows import Window, ResourceDictionary
 from System.Windows.Controls import CheckBox, Button, TextBox, ListBoxItem
 from System import Uri
