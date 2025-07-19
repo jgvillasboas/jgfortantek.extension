@@ -39,7 +39,7 @@ class TemplateSelector(Window):
         self.search_box.Margin = Thickness(10) 
         self.search_box.Width = 517
         self.search_box.HorizontalAlignment = HorizontalAlignment.Left
-        self.search_box.TextChanged += self.on_search_text_changed #changes alwats user start writing
+        self.search_box.TextChanged += self.on_search_text_changed #changes always user start writing
         search_panel.Children.Add(self.search_box)
 
         #OK Button
