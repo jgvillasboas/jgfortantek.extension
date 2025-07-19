@@ -36,14 +36,13 @@ form_templates = TemplateSelector(template_name_list)
 
 if form_templates.ShowDialog():
     selected_template_names = form_templates.listbox.SelectedItem
+    selected_template_view = viewtemplate_dictionary_name[selected_template_names]
+    view_template_id = selected_template_view.Id
+    TaskDialog.Show("Selected View Templates: ", "You Selected: " + str(selected_template_names))
 
     if not selected_template_names:
         TaskDialog.Show("Warning", "No View Templates were selected")
         script.exit()
-
-        selected_template_view = viewtemplate_dictionary_name[selected_template_names]
-        view_template_id = selected_template_view.Id
-        TaskDialog.Show("Selected View Templates: ", "You Selected: " + str(selected_template_names))
 
 else:
     script.exit()
