@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tantek4d_Base_UI"
         mc:Ignorable="d"
-        Title="Tanktek4D - WPF Sample Form" SizeToContent="Height" Width="300" Background="Gray" WindowStartupLocation="CenterScreen">
+        Title="Tanktek4D - WPF Sample Form" SizeToContent="Height" Width="320" Background="Gray" WindowStartupLocation="CenterScreen">
 
     <StackPanel Margin="10">
         <Image  Source="https://tantek4d.com/wp-content/uploads/2021/02/Tantek-4D-Logo-White.png" Height="20" Margin="0, 0, 0, 10"/>
