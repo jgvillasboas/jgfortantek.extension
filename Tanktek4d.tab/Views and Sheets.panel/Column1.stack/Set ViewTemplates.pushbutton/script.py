@@ -47,8 +47,6 @@ if form_templates.ShowDialog():
 else:
     script.exit()
         
-
-
 all_views = [view for view in FilteredElementCollector(doc).OfClass(View).ToElements() if not view.IsTemplate and not view.ViewType in [ViewType.Legend, ViewType.Schedule]]
 wrapped_views = [ViewWrapper(v) for v in all_views]
 
