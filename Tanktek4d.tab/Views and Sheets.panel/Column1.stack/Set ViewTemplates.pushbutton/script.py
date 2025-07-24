@@ -3,7 +3,7 @@
 #REVIT/GENERAL IMPORTS
 from Autodesk.Revit.UI import *
 from Autodesk.Revit.DB import *
-from pyrevit import forms
+from pyrevit import forms, script
 import wpf, os, clr
 
 #.NET IMPORTS
@@ -53,13 +53,12 @@ all_views = [view for view in FilteredElementCollector(doc).OfClass(View).ToElem
 wrapped_views = [ViewWrapper(v) for v in all_views]
 
 form_views = ViewSelection(wrapped_views)
-result_views = form_views.ShowDialog()
-
-if result_views == True:
+if form_views.ShowDialog():
     selected_views = form_views.get_selected_items()
 
     if not selected_views:
         TaskDialog.Show("Warning", "No Views were selected")
+        script.exit()
 
     else:
         t = Transaction(doc, "Applying Views")
