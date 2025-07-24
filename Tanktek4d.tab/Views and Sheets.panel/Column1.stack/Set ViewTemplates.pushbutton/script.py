@@ -3,7 +3,7 @@
 #REVIT/GENERAL IMPORTS
 from Autodesk.Revit.UI import *
 from Autodesk.Revit.DB import *
-from pyrevit import forms
+from pyrevit import forms, script
 import wpf, os, clr
 
 #.NET IMPORTS
