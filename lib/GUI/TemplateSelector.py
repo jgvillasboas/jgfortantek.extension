@@ -20,7 +20,7 @@ class TemplateSelector(Window):
          wpf.LoadComponent(self, path_xaml_file)
          self.original_items = list(items)
          self.listbox.ItemsSource = items
-         self.ShowDialog()
+         
        
     def OKButton_Click(self, sender, args):
          self.DialogResult = True
