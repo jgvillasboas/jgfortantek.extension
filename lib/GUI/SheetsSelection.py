@@ -13,6 +13,8 @@ from System.Collections.Generic import List
 from System import Uri
 from pyrevit import forms
 
+PATH_SCRIPT = os.path.dirname(__file__)
+
 class SheetSelection(Window):
     def __init__(self, wrapped_views):
         path_xaml_file = os.path.join( PATH_SCRIPT, "SheetsSelection.xaml")
@@ -51,7 +53,7 @@ class SheetSelection(Window):
         self.listbox.ItemsSource = None
         self.listbox.ItemsSource = [cb for cb in self.checkboxes if self.search_box.Text.lower() in str(cb.Content).lower()]
 
-    def on_search_text_changed(self, sender, args):
+    def SearchBox_TextChanged(self, sender, args):
         search_term = self.search_box.Text.lower()
         filtered = [item for item in self.checkboxes if search_term in str(item).lower()]
         self.listbox.ItemsSource = filtered

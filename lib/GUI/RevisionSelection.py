@@ -1,5 +1,5 @@
 import clr
-clr.AddReference("PresentationFramework", "WindowsBase", "PresentationCore")
+clr.AddReference("PresentationFramework", "WindowsBase", "PresentationCore", "System.Xml")
 
 from System.Windows import Window, Thickness, WindowStartupLocation, ResizeMode, HorizontalAlignment, VerticalAlignment
 from System.Windows.Controls import DockPanel, ListBox, Button, SelectionMode, Dock, ListBoxItem, TextBox, StackPanel, Orientation, TextBlock

@@ -16,7 +16,7 @@
             <TextBox x:Name="search_box" TextChanged="SearchBox_TextChanged"/>
         </DockPanel>
 
-        <ListBox x:Name="listbox" Height="200" Margin="5" SelectionChanged="on_search_text_changed"></ListBox>
+        <ListBox x:Name="listbox" Height="200" Margin="5" SelectionChanged="SearchBox_TextChanged"></ListBox>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
                 <Button Content="Check All" Width="75" Height="25" Margin="0, 0, 25, 0" Click="CheckAllButton_Click" Background="White"/>
