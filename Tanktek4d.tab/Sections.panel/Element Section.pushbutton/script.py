@@ -69,7 +69,8 @@ for e_id in selected_ids:
             basis_z = basis_x.CrossProduct(basis_y).Normalize()
             print("{} vertical".format(e.Symbol.Family.Name))
 
-            
+             
+             
         section_transform = Transform.Identity
         section_transform.Origin = center_global
         section_transform.BasisX = basis_x
