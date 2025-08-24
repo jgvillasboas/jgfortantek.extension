@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-print("Script 21/08/2025")
+print("Creating Supports Section Views")
 #Revit Imports
 from Autodesk.Revit.UI.Selection import ISelectionFilter, ObjectType
 from Autodesk.Revit.DB import *
@@ -15,6 +15,7 @@ from GUI import GetGeometry
 from GUI import SectionHelper
 from GUI import ViewHelper
 from GUI.TemplateSelector import TemplateSelector
+from GUI.DimensionHelper import DimensionHelper
 
 #Variables
 uidoc = __revit__.ActiveUIDocument
@@ -102,6 +103,8 @@ for e_id in selected_ids:
             print("Section created: {} \n".format(section.Name))
         if selected_template:
             section.ViewTemplateId = selected_template.Id
+
+        DimensionHelper.create_vertical_chain_dimension(doc, section, e)
 
 t.Commit()
 
