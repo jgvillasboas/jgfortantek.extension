@@ -1,6 +1,6 @@
 from Autodesk.Revit.DB import *
 
-def create_section_view(doc, view_type_id, crop_box, name = "Section"):
+def create_section_view(doc, view_type_id, crop_box, name):
     try:
         section = ViewSection.CreateSection(doc, view_type_id, crop_box)
         section.Name = name

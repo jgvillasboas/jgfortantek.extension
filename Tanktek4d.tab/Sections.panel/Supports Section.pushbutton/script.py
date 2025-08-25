@@ -98,13 +98,24 @@ for e_id in selected_ids:
         crop_box = ViewHelper.create_crop_box(section_transform, width, height, depth)
 
         # Create section view
-        section = SectionHelper.create_section_view(doc, viewTypeId, crop_box, name = "Section_" + type_name)
-        if section:
-            print("Section created: {} \n".format(section.Name))
-        if selected_template:
-            section.ViewTemplateId = selected_template.Id
 
-        DimensionHelper.create_vertical_chain_dimension(doc, section, e)
+        existing_view_name = {v.Name for v in FilteredElementCollector(doc).OfClass(View).WhereElementIsNotElementType()}
+        if type_name in existing_view_name:
+            print("Section view with name '{}' already exists. Skipping...".format(type_name))
+            continue
+
+        try:
+            section = SectionHelper.create_section_view(doc, viewTypeId, crop_box, name = type_name)
+            if section:
+                print("Section created: {} \n".format(section.Name))
+            if selected_template:
+                section.ViewTemplateId = selected_template.Id
+
+        except Exception as ex:
+            print("Error creating section view: {}".format(ex))
+            continue
+
+            
 
 t.Commit()
 
