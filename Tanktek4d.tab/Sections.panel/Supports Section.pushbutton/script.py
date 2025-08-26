@@ -62,6 +62,7 @@ t.Start()
 for e_id in selected_ids:
     e = doc.GetElement(e_id) #get Element Id
     type_name = e.Symbol.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM).AsString() #get Type Name
+    
 
     #Filter if Element has "SUR_" in Family Name
     if isinstance(e, FamilyInstance) and \
@@ -105,7 +106,7 @@ for e_id in selected_ids:
             continue
 
         try:
-            section = SectionHelper.create_section_view(doc, viewTypeId, crop_box, name = type_name)
+            section = SectionHelper.create_section_view(doc, viewTypeId, crop_box, name = type_name, sheetname = type_name)
             if section:
                 print("Section created: {} \n".format(section.Name))
             if selected_template:
