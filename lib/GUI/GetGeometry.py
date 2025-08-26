@@ -30,3 +30,23 @@ def get_solid_bbox(solids):
                         max(max_pt.Y, bbox.Max.Y),
                         max(max_pt.Z, bbox.Max.Z))
     return (min_pt, max_pt)
+
+def get_transformed_bbox(bbox, link_transform, offset=1):
+    if not bbox:
+        return None
+
+    min_pt = link_transform.OfPoint(bbox.Min)
+    max_pt = link_transform.OfPoint(bbox.Max)
+
+    minX = min(min_pt.X, max_pt.X) - offset
+    minY = min(min_pt.Y, max_pt.Y) - offset
+    minZ = min(min_pt.Z, max_pt.Z) - offset
+    maxX = max(min_pt.X, max_pt.X) + offset
+    maxY = max(min_pt.Y, max_pt.Y) + offset
+    maxZ = max(min_pt.Z, max_pt.Z) + offset
+
+    bbox_transformed = BoundingBoxXYZ()
+    bbox_transformed.Min = XYZ(minX, minY, minZ)
+    bbox_transformed.Max = XYZ(maxX, maxY, maxZ)
+
+    return bbox_transformed
