@@ -18,8 +18,8 @@ from GUI.TemplateSelector import TemplateSelector
 from GUI.DimensionHelper import DimensionHelper
 
 #Variables
-uidoc = __revit__.ActiveUIDocument
-doc = __revit__.ActiveUIDocument.Document #type: Document
+uidoc = __revit__.ActiveUIDocument # type: ignore
+doc = __revit__.ActiveUIDocument.Document # type: ignore #type: Document
 selection = uidoc.Selection
 
 #Select Elements id for each element selected
