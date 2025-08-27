@@ -3,6 +3,7 @@ from Autodesk.Revit.DB import *
 from Autodesk.Revit.UI.Selection import ObjectType
 
 from GUI.NewNameHelper import NewNameHelper
+from GUI import GetGeometry
 
 uidoc = __revit__.ActiveUIDocument # type: ignore
 doc = __revit__.ActiveUIDocument.Document # type: ignore #type: Document
@@ -27,20 +28,8 @@ try:
         # Get the bounding box of the linked element in its own coordinate system
         bbox = linked_element.get_BoundingBox(None)
 
-        offset = 1
-        pt_min = link_transform.OfPoint(bbox.Min)
-        pt_max = link_transform.OfPoint(bbox.Max)
-
-        minX = min(pt_min.X, pt_max.X) - offset
-        minY = min(pt_min.Y, pt_max.Y) - offset
-        minZ = min(pt_min.Z, pt_max.Z) - offset
-        maxX = max(pt_min.X, pt_max.X) + offset
-        maxY = max(pt_min.Y, pt_max.Y) + offset
-        maxZ = max(pt_min.Z, pt_max.Z) + offset
-
-        bbox_transformed = BoundingBoxXYZ()
-        bbox_transformed.Min = XYZ(minX, minY, minZ)
-        bbox_transformed.Max = XYZ(maxX, maxY, maxZ)
+        # Transform the bounding box to the host document's coordinate system
+        bbox_transformed = GetGeometry.get_transformed_bbox(bbox, link_transform, offset=1)
 
         view_types = FilteredElementCollector(doc).OfClass(ViewFamilyType).ToElements()
         view_3d_type = [vt for vt in view_types if vt.ViewFamily == ViewFamily.ThreeDimensional][0]

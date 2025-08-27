@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 from Autodesk.Revit.DB import *
 from Autodesk.Revit.UI.Selection import ObjectType
+from pyrevit import forms, script
+import wpf, os, clr
 
 from GUI.NewNameHelper import NewNameHelper
+from GUI.SelectbyID import SelectID
 from GUI import GetGeometry
 
 uidoc = __revit__.ActiveUIDocument # type: ignore
@@ -12,7 +15,10 @@ name_manager = NewNameHelper(doc)
 new_view_name = name_manager.get_unique_name("My_3D_View")
 active_view = uidoc.ActiveView
 
-linked_element_id_value = 123456
+window = SelectID()
+if window.ShowDialog() == True:
+    linked_element_id_value = window.idfromlink
+
 linked_element = None
 linked_instance = None
 
@@ -27,7 +33,7 @@ for link in FilteredElementCollector(doc).OfClass(RevitLinkInstance):
         break
 
 if not linked_element:
-    raise Exception("Element ID not found in any Linked File")
+    print("Element ID not found in any Linked File")
 
 try:
     if linked_instance:
