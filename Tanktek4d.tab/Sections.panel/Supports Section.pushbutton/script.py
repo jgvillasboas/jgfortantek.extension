@@ -11,7 +11,6 @@ from pyrevit import script, forms, EXEC_PARAMS
 import traceback, math, os, sys, clr, wpf
 
 #Custom Imports
-from GUI import GetGeometry
 from GUI import SectionHelper
 from GUI import ViewHelper
 from GUI.TemplateSelector import TemplateSelector
@@ -70,11 +69,11 @@ for e_id in selected_ids:
        "SUR_" in e.Symbol.Family.Name:
         
         #Get Solid
-        solids = GetGeometry.get_solids(e, opt)
+        solids = ViewHelper.get_solids(e, opt)
         if not solids:
             continue
 
-        min_pt, max_pt = GetGeometry.get_solid_bbox(solids) #Get Solid Bounding Box
+        min_pt, max_pt = ViewHelper.get_solid_bbox(solids) #Get Solid Bounding Box
         bbox = e.get_BoundingBox(None) #Get Bouding Box
         center = (bbox.Min + bbox.Max) / 2 #Get Bounding Box Center
         
