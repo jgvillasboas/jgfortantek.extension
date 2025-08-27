@@ -5,7 +5,7 @@ import clr, wpf, os
 clr.AddReference("System", "PresentationFramework", "WindowsBase", "PresentationCore")
 
 #.NET IMPORTS
-from System.Windows import Window, ResourceDictionary # type: ignore
+from System.Windows import Window, ResourceDictionary, WindowStartupLocation # type: ignore
 from System.Windows.Controls import DockPanel, ListBox, Button, SelectionMode, Dock, ListBoxItem, TextBox, StackPanel, Orientation, TextBlock, CheckBox # type: ignore
 from System.IO import StringReader # type: ignore
 from System import EventHandler # type: ignore
@@ -20,10 +20,22 @@ class SelectID(Window):
         path_xaml_file = os.path.join( PATH_SCRIPT, "SelectbyID.xaml")
         wpf.LoadComponent(self, path_xaml_file)
         self.idfromlink = idfromlink
+        self.OkButton.IsDefault = True
+        self.OkButton.IsCancel = True
         self.OkButton.Click += self.on_select_element
+        self.WindowStartupLocation = WindowStartupLocation.CenterScreen
 
     def on_select_element(self, sender, args):
-        self.idfromlink = int(self.ElementIDTextBox.Text)
+        user_input = self.ElementIDTextBox.Text.strip()
+        if not user_input.isdigit():
+            forms.alert("Please enter a valid integer Element ID.", title="Invalid Input")
+            return
+
+        if not user_input.isdigit():
+            forms.alert("Please enter a valid integer Element ID.", title="Invalid Input")
+            return
+
+        self.idfromlink = int(user_input)
         self.DialogResult = True
         self.Close()
 

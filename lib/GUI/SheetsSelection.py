@@ -24,7 +24,7 @@ class SheetSelection(Window):
 
         for sheet in wrapped_views:
             cb = CheckBox()
-            cb.Content = sheet.sheet.Name
+            cb.Content = sheet.Display
             cb.Tag = sheet.sheet
             self.checkboxes.append(cb)
 
