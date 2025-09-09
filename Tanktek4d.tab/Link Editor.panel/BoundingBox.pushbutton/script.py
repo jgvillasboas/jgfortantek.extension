@@ -3,7 +3,7 @@ from Autodesk.Revit.DB import *
 from Autodesk.Revit.UI.Selection import ObjectType
 
 from GUI.NewNameHelper import NewNameHelper
-from GUI import GetGeometry
+from GUI import ViewHelper
 
 uidoc = __revit__.ActiveUIDocument # type: ignore
 doc = __revit__.ActiveUIDocument.Document # type: ignore #type: Document
@@ -29,7 +29,7 @@ try:
         bbox = linked_element.get_BoundingBox(None)
 
         # Transform the bounding box to the host document's coordinate system
-        bbox_transformed = GetGeometry.get_transformed_bbox(bbox, link_transform, offset=1)
+        bbox_transformed = ViewHelper.get_transformed_bbox(bbox, link_transform, offset=1)
 
         view_types = FilteredElementCollector(doc).OfClass(ViewFamilyType).ToElements()
         view_3d_type = [vt for vt in view_types if vt.ViewFamily == ViewFamily.ThreeDimensional][0]
