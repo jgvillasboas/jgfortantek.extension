@@ -71,8 +71,19 @@ class Selector():
                 overall_bbox_center = XYZ((overall_bbox.Min.X + overall_bbox.Max.X) / 2,
                                           (overall_bbox.Min.Y + overall_bbox.Max.Y) / 2,
                                           (overall_bbox.Min.Z + overall_bbox.Max.Z) / 2)
+                bbox_pts = [
+                    XYZ(overall_bbox.Min.X, overall_bbox.Min.Y, overall_bbox.Min.Z),
+                    XYZ(overall_bbox.Min.X, overall_bbox.Min.Y, overall_bbox.Max.Z),
+                    XYZ(overall_bbox.Min.X, overall_bbox.Max.Y, overall_bbox.Min.Z),
+                    XYZ(overall_bbox.Min.X, overall_bbox.Max.Y, overall_bbox.Max.Z),
+                    XYZ(overall_bbox.Max.X, overall_bbox.Min.Y, overall_bbox.Min.Z),
+                    XYZ(overall_bbox.Max.X, overall_bbox.Min.Y, overall_bbox.Max.Z),
+                    XYZ(overall_bbox.Max.X, overall_bbox.Max.Y, overall_bbox.Min.Z),
+                    XYZ(overall_bbox.Max.X, overall_bbox.Max.Y, overall_bbox.Max.Z)
+                    ]
+                
         except Exception as e:
             print("Error occurred while placing openings: {}".format(e))
             traceback.print_exc()
 
-        return overall_bbox, overall_bbox_center
+        return overall_bbox, overall_bbox_center, bbox_pts
