@@ -103,6 +103,9 @@ try:
     angle = XYZ.BasisX.AngleTo(wall_direction)
     ElementTransformUtils.RotateElement(doc, opening_instance.Id, rotation_axis, angle)
 
+    if opening_instance:
+        forms.alert("Opening Created")
+
 
 except Exception as e:
     print("Operation cancelled or failed: {}".format(e))
