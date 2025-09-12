@@ -1,4 +1,4 @@
-import clr
+import clr, re
 clr.AddReference("PresentationFramework", "WindowsBase", "PresentationCore", "System.Xml")
 
 from System.Windows import Window, Thickness, WindowStartupLocation, ResizeMode, HorizontalAlignment, VerticalAlignment
@@ -150,8 +150,10 @@ class ViewSelection(Window):
         self.listbox.ItemsSource = filtered
 
     def get_selected_items(self):
-        return [item for item in self.original_items if item.IsSelected]
-
+        selected_wrappers = [item for item in self.original_items if item.IsSelected]
+        selected_views = [vw.views for vw in selected_wrappers]
+        
+        return selected_wrappers, selected_views
 class ViewWrapper(object):
     def __init__(self, views):
         self.views = views
@@ -163,6 +165,13 @@ class ViewWrapper(object):
     
     def __repr__(self):
         return self.__str__()
+    
+    @staticmethod
+    def alphanum_key(s):
+        parts = re.split('(\d+)', s)
+        return [int (p) if p.isdigit() else p.lower() for p in parts]
+    
+
 
 
 

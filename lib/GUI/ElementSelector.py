@@ -104,7 +104,7 @@ class Selector():
 class FamilySymbolName:
     @staticmethod
     def get_family_symbol(doc, family_name, family_symbol_name):
-        collector = FilteredElementCollector(doc).OfClass(FamilySymbol).OfCategory(BuiltInCategory.OST_SpecialityEquipment)
+        collector = FilteredElementCollector(doc).OfClass(FamilySymbol).OfCategory(BuiltInCategory.OST_GenericModel)
 
         for fs in collector:
             fam_name = fs.Family.Name

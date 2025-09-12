@@ -70,7 +70,7 @@ center_in_host = link_transform.OfPoint(center_in_link)
 
 #Place Opening Family Instance
 #Get Family Symbol
-family_name = "CCL OPE Family - 2023"
+family_name = "SUIR_OPENING"
 family_symbol_name = "KGE_Ope"
 
 #Search for Family Symbol
@@ -83,6 +83,7 @@ if not fs:
 #Activate Family Symbol if not active
 if not fs.IsActive:
     t1 = Transaction(doc, "Activate Family Symbol")
+    t1.Start()
     fs.Activate()
     doc.Regenerate()
     t1.Commit()
@@ -91,7 +92,7 @@ if not fs.IsActive:
 t2 = Transaction(doc, "Place Openings in Containments")
 t2.Start()
 
-opening_instance = doc.Create.NewFamilyInstance(center_in_host, fs, StructuralType.NonStructural)
+opening_instance = doc.Create.NewFamilyInstance(center_in_host, fs, linked_wall, StructuralType.NonStructural)
 rotation_axis = Line.CreateBound(center_in_host, center_in_host + wall_normal)
 angle = XYZ.BasisX.AngleTo(wall_direction)
 ElementTransformUtils.RotateElement(doc, opening_instance.Id, rotation_axis, angle)
