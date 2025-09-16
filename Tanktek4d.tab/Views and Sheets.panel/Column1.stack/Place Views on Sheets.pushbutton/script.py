@@ -37,8 +37,6 @@ all_sheets = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Sheets
 wrapped_sheets = [SheetWrapper(s) for s in all_sheets]
 form_sheets = SheetSelection(wrapped_sheets)
 
-
-
 #Asking User to Select Views
 if form_views.ShowDialog():
     selected_wrappers, selected_views = form_views.get_selected_items()
@@ -100,7 +98,8 @@ for view in selected_views:
         x_offset = -2.45
         y_offset -= spacing_y
 
-    TaskDialog.Show("Views ")
+
+TaskDialog.Show("Success","Views Placed Successfully")
 t.Commit()
 
 

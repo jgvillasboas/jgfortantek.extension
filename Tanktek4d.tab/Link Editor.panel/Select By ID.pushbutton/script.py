@@ -4,14 +4,13 @@ from Autodesk.Revit.UI.Selection import ObjectType
 from pyrevit import forms, script
 import wpf, os, clr
 
-from GUI.NewNameHelper import NewNameHelper
 from GUI.SelectbyID import SelectID
 from GUI import ViewHelper
 
 uidoc = __revit__.ActiveUIDocument # type: ignore
 doc = __revit__.ActiveUIDocument.Document # type: ignore #type: Document
 selection = uidoc.Selection
-name_manager = NewNameHelper(doc)
+name_manager = ViewHelper.NewNameHelper(doc)
 new_view_name = name_manager.get_unique_name("My_3D_View")
 active_view = uidoc.ActiveView
 

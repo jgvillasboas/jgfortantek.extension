@@ -114,9 +114,7 @@ for e_id in selected_ids:
         except Exception as ex:
             print("Error creating section view: {}".format(ex))
             continue
-
-            
-
+        
 t.Commit()
 
 
