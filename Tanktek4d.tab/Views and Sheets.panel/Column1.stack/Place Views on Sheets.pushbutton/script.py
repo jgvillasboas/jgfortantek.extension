@@ -34,7 +34,7 @@ form_views = ViewSelection(wrapped_views)
 
 #Asking User to Select Views
 if form_views.ShowDialog():
-    selected_wrappers, selected_views = form_views.get_selected_items()
+    selected_wrappers, selected_views, selected_names = form_views.get_selected_items()
     selected_views = sorted(selected_views, key=lambda v: ViewWrapper.alphanum_key(v.Name))
         
     if not selected_views:
