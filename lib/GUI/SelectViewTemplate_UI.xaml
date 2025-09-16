@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SelectViewTemplate"
         mc:Ignorable="d"
-        Title="SelectViewTemplate_UI" SizeToContent="Height" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="CanResize" Background="LightGray">
+        Title="SelectViewTemplate_UI" SizeToContent="Height" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closing ="Window_Closing">
 
     <StackPanel Margin="5">
-        <Image  Source="https://tantek4d.com/wp-content/uploads/2021/02/Tantek-4D-Logo-White.png" Height="20" Margin="0, 0, 0, 0" HorizontalAlignment="Center"/>
+        <Image  Source="https://i.imgur.com/V14ImZz.png" Height="30" Margin="0, 0, 0, 0" HorizontalAlignment="Center"/>
         <TextBlock Text="Select ViewTemplate:" Margin="5" FontWeight="Bold"/>
         
         <DockPanel Margin="5">
@@ -19,7 +19,7 @@
         <ListBox x:Name="listbox" Height="200" Margin="5" SelectionChanged="ListBox_SelectionChanged" SelectionMode="Single"></ListBox>
         
         <DockPanel Margin="5">
-            <Button Content="OK" Width="75" Margin="0, 0, 5, 0" Click="OKButton_Click" Background="White"/>
+            <Button Content="OK" Width="75" Margin="0, 0, 5, 0" Click="OKButton_Click"/>
         </DockPanel>
         
     </StackPanel>

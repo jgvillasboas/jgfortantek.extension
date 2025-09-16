@@ -112,7 +112,9 @@ class ViewSelection(Window):
         #CheckBox with Xaml
         xaml = """
         <DataTemplate xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-            <CheckBox Content="{Binding Display}" IsChecked="{Binding IsSelected}" />
+            <CheckBox IsChecked="{Binding IsSelected}">
+             <TextBlock Text="{Binding Display}" />
+            </CheckBox>
         </DataTemplate>
         """
         reader = XmlReader.Create(StringReader(xaml))
@@ -154,6 +156,9 @@ class ViewSelection(Window):
         selected_views = [vw.views for vw in selected_wrappers]
         
         return selected_wrappers, selected_views
+    
+    def Window_Closing(self, sender, args):
+        self.DialogResult = False
 class ViewWrapper(object):
     def __init__(self, views):
         self.views = views

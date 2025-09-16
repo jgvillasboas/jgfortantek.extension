@@ -44,6 +44,9 @@ if form_templates.ShowDialog():
         TaskDialog.Show("Warning", "No View Templates were selected")
         script.exit()
 
+elif form_templates.DialogResult == False:
+    script.exit()
+
 else:
     script.exit()
         
