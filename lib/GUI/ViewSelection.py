@@ -31,18 +31,24 @@ class ViewSelection(Window):
         self.Close()
 
     def CheckAllButton_Click(self, sender, args):
-        for cb in self.checkboxes:
-            cb.IsChecked = True
+        visible_items = self.listbox.ItemsSource
+        if visible_items:
+            for cb in visible_items:
+                cb.IsChecked = True
         self.refresh_list()
 
     def UncheckAllButton_Click(self, sender, args):
-        for cb in self.checkboxes:
-            cb.IsChecked = False
+        visible_items = self.listbox.ItemsSource
+        if visible_items:
+            for cb in visible_items:
+                cb.IsChecked = False
         self.refresh_list()
 
     def ToggleAllButton_Click(self, sender, args):
-        for cb in self.checkboxes:
-            cb.IsChecked = not cb.IsChecked
+        visible_items = self.listbox.ItemsSource
+        if visible_items:
+            for cb in visible_items:
+                cb.IsChecked = not cb.IsChecked
         self.refresh_list()
 
     def refresh_list(self):

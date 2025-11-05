@@ -35,7 +35,8 @@ class TemplateSelector(Window):
           selected = self.listbox.SelectedItem
 
     def Window_Closing(self, sender, args):
-        self.DialogResult = False
+        if not self.DialogResult:
+          self.DialogResult = False
 
 
 
